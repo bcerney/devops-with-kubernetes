@@ -1,0 +1,15 @@
+# Flask
+flask
+Flask-Bootstrap
+Flask-WTF
+
+requests
+Pillow
+gunicorn
+# psycopg2
+
+# dev tools
+pip-tools
+black
+flake8
+pdbpp

@@ -1,0 +1,9 @@
+
+
+Definitions+Flashcards
+
+- Pods
+- Deployments
+- Services
+- Ingress
+- Volume

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dwk-todos-deploy
+  labels:
+    app: dwk-todos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dwk-todos
+  template:
+    metadata:
+      labels:
+        app: dwk-todos
+    spec:
+      # volumes:
+      #   - name: flask-storage
+      #     persistentVolumeClaim:
+      #       claimName: flask-claim
+      containers:
+      - name: dwk-todos
+        image: bcerney/dwk-todos:latest
+        imagePullPolicy: Always
+        # volumeMounts:
+        # - name: flask-storage
+        #   mountPath: /app/files
+        ports:
+          - containerPort: 5000
+      restartPolicy: Always
