@@ -11,24 +11,6 @@ from PIL import Image
 
 from .forms import AddTodoForm
 
-# INDEX_IMG_PATH = "/app/files/index-img.jpeg"
-# PICSUM_URL = "https://picsum.photos/300"
-
-
-# def get_index_img():
-#     if os.path.isfile(INDEX_IMG_PATH):
-#         app.logger.info("Image exists")
-#         img = Image.open(INDEX_IMG_PATH)
-#         img.save("todo/static/index-img.jpeg")
-#     else:
-#         app.logger.info("Image not found, downloading now...")
-#         response = requests.get(PICSUM_URL)
-#         img = Image.open(BytesIO(response.content))
-#         img.save(INDEX_IMG_PATH)
-#         img.save("todo/static/index-img.jpeg")
-
-
-# INDEX_IMG = get_index_img()
 
 
 TODOS = ["todo1", "todo2"]
@@ -36,7 +18,6 @@ TODOS = ["todo1", "todo2"]
 
 @app.route("/todos", methods=["GET", "POST"])
 def todos():
-    # TODO: figure out why is_json check not true
     if request.method == "POST" and request.is_json:
         req = request.get_json(force=True)
         todo = req.get("todo")

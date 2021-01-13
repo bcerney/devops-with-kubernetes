@@ -11,6 +11,7 @@ bootstrap = Bootstrap()
 
 
 def create_app(config_class=config.DevelopmentConfig):
+    # TODO: remove if not needed
     # dictConfig({
     #     'version': 1,
     #     'formatters': {'default': {

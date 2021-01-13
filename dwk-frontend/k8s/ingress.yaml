@@ -1,6 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  namespace: dwk-todos
   name: dwk-frontend-ingress
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"

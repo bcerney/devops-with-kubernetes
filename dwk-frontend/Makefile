@@ -39,8 +39,6 @@ run-dev: # Run flask locally
 
 .PHONY: apply
 apply: ## Apply dwk deployment
-	# kubectl apply -f k8s/persistentvolume.yaml
-	# kubectl apply -f k8s/persistentvolumeclaim.yaml
 	kubectl apply -f k8s/deployment.yaml
 	kubectl apply -f k8s/service.yaml
 	kubectl apply -f k8s/ingress.yaml
@@ -50,8 +48,6 @@ delete: ## Delete dwk deployment
 	kubectl delete ingress dwk-frontend-ingress
 	kubectl delete service dwk-frontend-svc
 	kubectl delete deployment dwk-frontend-deploy
-	# kubectl delete persistentvolumeclaim flask-claim
-	# kubectl delete persistentvolume flask-pv
 
 .PHONY: rebuild
 rebuild: delete build-latest apply ## Delete dwk deployment
