@@ -1,12 +1,16 @@
 # Flask
 flask
 Flask-Bootstrap
+flask-marshmallow
+flask-migrate
+flask-sqlalchemy
 Flask-WTF
+marshmallow-sqlalchemy
 
 requests
 Pillow
 gunicorn
-# psycopg2
+psycopg2
 
 # dev tools
 pip-tools

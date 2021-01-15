@@ -3,19 +3,18 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
+
   <div class="container">
 
-    <img src="{{ url_for('static', filename='index-img.jpeg') }}" alt="TODO List Image" />
+    <img src="{{ url_for('static', filename='index-img.jpeg') }}" alt="TODO List Image" width="400" height="400"/>
 
     <h1>Add TODO</h1>
     {{ wtf.quick_form(add_todo_form) }}
-
-    <p>{{ todos_res }}</p>
   
     <ul>
       <li>static todo</li>
       {% for todo in todos %}
-        <li>{{ todo }}</li>
+        <li>{{ todo['body'] }}</li>
       {% endfor %}
     </ul>
 

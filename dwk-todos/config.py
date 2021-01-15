@@ -1,8 +1,10 @@
 import os
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 # POSTGRES_USER = os.environ.get('POSTGRES_USER')
 # POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
-# DATABASE_URL = f'postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@postgres:5432/books'
+DATABASE_URL = "postgres://postgres:example@postgres-svc.dwk-todos:5432/postgres"
 
 
 class BaseConfig:
@@ -30,10 +32,11 @@ class DevelopmentConfig(BaseConfig):
     """Development configuration"""
     # TODO: remove hardcode, k8s secret
     SECRET_KEY = "((AUGSd(ASdgj9asdf9ASD;n;lkdsvna;lk"
-    # SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 
 
 class ProductionConfig(BaseConfig):
     """Production configuration"""
-
-    # SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    # SECRET_KEY = os.environ.get('DATABASE_URL')
+    SECRET_KEY = "((AUGSd(ASdgj9asdf9ASD;n;lkdsvna;lkadsfsad"
+    SQLALCHEMY_DATABASE_URI = DATABASE_URL

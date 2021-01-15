@@ -1,33 +1,33 @@
-import logging
-import os
-import uuid
-from io import BytesIO
-
 import requests
 from flask import Flask
 from flask import current_app as app
-from flask import make_response, jsonify, redirect, render_template, request, url_for
-from PIL import Image
+from flask import (jsonify, make_response, redirect, render_template, request,
+                   url_for)
 
-from .forms import AddTodoForm
+from .extensions import db
+from .models import Task, TaskSchema
 
 
-
-TODOS = ["todo1", "todo2"]
-
+TASKS_SCHEMA = TaskSchema(many=True, exclude=("time_created", ))
 
 @app.route("/todos", methods=["GET", "POST"])
 def todos():
     if request.method == "POST" and request.is_json:
         req = request.get_json(force=True)
-        todo = req.get("todo")
-        TODOS.append(todo)
+        
+        task = Task(body=req.get("todo"))
+        db.session.add(task)
+        db.session.commit()
 
+        tasks = Task.query.all()
+        res = {"todos": TASKS_SCHEMA.dump(tasks)}
         # print() works for stdout k8s logs, use it
-        print(TODOS)
+        print(res)
 
-        res = {"todos": TODOS}
         return make_response(jsonify(res), 200)
     else:
         make_response(jsonify({"message": "Request body must be JSON"}), 400)
-    return make_response(jsonify({"todos": TODOS}), 200)
+    
+    tasks = Task.query.all()
+    res = {"todos": TASKS_SCHEMA.dump(tasks)}
+    return make_response(jsonify(res), 200)

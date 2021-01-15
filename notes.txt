@@ -1,0 +1,15 @@
+
+
+Definitions+Flashcards
+
+- Pods
+- Deployments
+- Services
+- Ingress
+- Volume
+
+kubectl create -f k8s/namespace-dwk-todos.yml
+
+kubectl config set-context $(kubectl config current-context) --namespace=dwk-todos
+
+kubectl create deployment --image=nginx nginx --dry-run -o yaml
