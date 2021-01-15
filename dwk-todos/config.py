@@ -1,17 +1,21 @@
 import os
+from dotenv import load_dotenv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
-# POSTGRES_USER = os.environ.get('POSTGRES_USER')
-# POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+SQLITE_DB_PATH = 'sqlite:///' + os.path.join(basedir, 'app.db')
 DATABASE_URL = "postgres://postgres:example@postgres-svc.dwk-todos:5432/postgres"
 
 
 class BaseConfig:
     """Base configuration"""
 
-    DEBUG = False
-    TESTING = False
+    # DEBUG = False
+    # TESTING = False
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        SQLITE_DB_PATH
     # https://flask-sqlalchemy.palletsprojects.com/en/2.x/signals/
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -21,22 +25,16 @@ class BaseConfig:
         # log to stderr
         import logging
         from logging import StreamHandler
+
         file_handler = StreamHandler()
         file_handler.setLevel(logging.DEBUG)
         app.logger.addHandler(file_handler)
 
+# TODO: figure out how to choose config based on env variable
+# class DevelopmentConfig(BaseConfig):
+#     """Development configuration"""
 
 
 
-class DevelopmentConfig(BaseConfig):
-    """Development configuration"""
-    # TODO: remove hardcode, k8s secret
-    SECRET_KEY = "((AUGSd(ASdgj9asdf9ASD;n;lkdsvna;lk"
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
-
-
-class ProductionConfig(BaseConfig):
-    """Production configuration"""
-    # SECRET_KEY = os.environ.get('DATABASE_URL')
-    SECRET_KEY = "((AUGSd(ASdgj9asdf9ASD;n;lkdsvna;lkadsfsad"
-    SQLALCHEMY_DATABASE_URI = DATABASE_URL
+# class ProductionConfig(BaseConfig):
+#     """Production configuration"""

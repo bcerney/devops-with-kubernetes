@@ -96,6 +96,8 @@ pyrepl==0.9.0
     # via fancycompleter
 python-dateutil==2.8.1
     # via alembic
+python-dotenv==0.15.0
+    # via -r requirements.in
 python-editor==1.0.4
     # via alembic
 regex==2020.11.13

@@ -12,7 +12,7 @@ from .extensions import db, ma, migrate
 bootstrap = Bootstrap()
 
 
-def create_app(config_class=config.DevelopmentConfig):
+def create_app(config_class=config.BaseConfig):
     # TODO: remove if not needed
     # dictConfig({
     #     'version': 1,
@@ -46,6 +46,3 @@ def create_app(config_class=config.DevelopmentConfig):
         from . import main, models
 
     return app
-
-
-# from app import models

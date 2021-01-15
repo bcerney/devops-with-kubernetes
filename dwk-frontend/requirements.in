@@ -3,10 +3,10 @@ flask
 Flask-Bootstrap
 Flask-WTF
 
+python-dotenv
 requests
 Pillow
 gunicorn
-# psycopg2
 
 # dev tools
 pip-tools

@@ -1,3 +1,10 @@
+# dev
+
+.PHONY: black
+black: ## black formatter
+	black dwk-todos/
+	black dwk-frontend/
+
 # k8s
 
 .PHONY: namespace-apply

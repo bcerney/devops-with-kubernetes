@@ -10,7 +10,7 @@ import config
 bootstrap = Bootstrap()
 
 
-def create_app(config_class=config.DevelopmentConfig):
+def create_app(config_class=config.BaseConfig):
     app = Flask(__name__)
 
     app.config.from_object(config_class)

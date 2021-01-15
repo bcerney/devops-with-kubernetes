@@ -1,13 +1,12 @@
 import logging
 import os
 import json
-import uuid
 from io import BytesIO
 
 import requests
 from flask import Flask
 from flask import current_app as app
-from flask import redirect, render_template, request, url_for
+from flask import render_template, request
 from PIL import Image
 
 from .forms import AddTodoForm

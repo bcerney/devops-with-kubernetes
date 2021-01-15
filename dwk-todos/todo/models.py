@@ -11,6 +11,7 @@ class Task(db.Model):
     def __repr__(self):
         return f"<Task {self.body}>"
 
+
 class TaskSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Task

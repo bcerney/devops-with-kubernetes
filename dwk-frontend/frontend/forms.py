@@ -1,14 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import (
-    HiddenField,
-    SelectField,
-    SelectMultipleField,
     StringField,
     SubmitField,
-    TextAreaField,
 )
-from wtforms.validators import DataRequired, Length, ValidationError
-from wtforms.widgets import CheckboxInput, ListWidget
+from wtforms.validators import DataRequired
 
 
 class AddTodoForm(FlaskForm):
