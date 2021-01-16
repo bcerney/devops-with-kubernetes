@@ -13,3 +13,11 @@ kubectl create -f k8s/namespace-dwk-todos.yml
 kubectl config set-context $(kubectl config current-context) --namespace=dwk-todos
 
 kubectl create deployment --image=nginx nginx --dry-run -o yaml
+
+
+cat postgres-secret.yml | kubeseal \
+    --controller-namespace kube-system \
+    --format yaml \
+    > postgres-sealedsecret.yml
+
+kubectl -n prometheus port-forward kube-prometheus-stack-10800603-grafana-bd79ff47c-5pjlr 3000
