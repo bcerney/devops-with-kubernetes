@@ -33,9 +33,11 @@ get_index_img()
 def index():
     add_todo_form = AddTodoForm(request.form)
 
+    print(vars(request))
     if request.method == "POST" and add_todo_form.validate_on_submit():
         todo = {"todo": add_todo_form.todo.data}
         todos_res = requests.post(DWK_TODOS_SVC_URL, json=todo)
+        print(todos_res)
         todos = todos_res.json().get("todos")
 
         add_todo_form = AddTodoForm()
@@ -43,6 +45,7 @@ def index():
 
     # Get all todos
     todos_res = requests.get(DWK_TODOS_SVC_URL).json()
+    print(todos_res)
     todos = todos_res.get("todos")
 
     return render_template("index.html", todos=todos, add_todo_form=add_todo_form)

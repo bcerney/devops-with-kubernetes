@@ -12,6 +12,7 @@ TASKS_SCHEMA = TaskSchema(many=True, exclude=("time_created",))
 
 @app.route("/todos", methods=["GET", "POST"])
 def todos():
+    print(vars(request))
     if request.method == "POST" and request.is_json:
         req = request.get_json(force=True)
 
@@ -21,7 +22,6 @@ def todos():
 
         tasks = Task.query.all()
         res = {"todos": TASKS_SCHEMA.dump(tasks)}
-        # print() works for stdout k8s logs, use it
         print(res)
 
         return make_response(jsonify(res), 200)
